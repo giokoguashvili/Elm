@@ -5,26 +5,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 
-type alias Model =
-    { query : String
-    , results : List SearchResult
-    }
-
-
-type alias SearchResult =
-    { id : Int
-    , name : String
-    , stars : Int
-    }
-
-
-type alias Msg =
-    { operation : String
-    , data : Int
-    }
-
-
-
 initialModel = { 
         todos = [
             { id = 1, title = "React" }, 
