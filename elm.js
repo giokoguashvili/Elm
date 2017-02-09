@@ -8262,17 +8262,68 @@ var _elm_lang$html$Html_Events$Options = F2(
 
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		return _elm_lang$core$Native_Utils.eq(msg.operation, 'DELETE_TODO') ? _elm_lang$core$Native_Utils.update(
-			model,
-			{
-				todos: A2(
-					_elm_lang$core$List$filter,
-					function (m) {
-						return !_elm_lang$core$Native_Utils.eq(m.id, msg.data);
-					},
-					model.todos)
-			}) : model;
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'DeleteTodo':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(
+							_elm_lang$core$List$filter,
+							function (m) {
+								return !_elm_lang$core$Native_Utils.eq(m.id, _p0._0);
+							},
+							model.todos)
+					});
+			case 'UpdateField':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{inputValue: _p0._0});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(
+							_elm_lang$core$Basics_ops['++'],
+							model.todos,
+							{
+								ctor: '::',
+								_0: {id: model.uid, title: model.inputValue},
+								_1: {ctor: '[]'}
+							}),
+						uid: model.uid + 1,
+						inputValue: ''
+					});
+		}
 	});
+var _user$project$Main$initialModel = {
+	uid: 3,
+	inputValue: '',
+	todos: {
+		ctor: '::',
+		_0: {id: 1, title: 'React'},
+		_1: {
+			ctor: '::',
+			_0: {id: 2, title: 'Elm'},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$Main$TodoItemModel = F2(
+	function (a, b) {
+		return {id: a, title: b};
+	});
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {uid: a, inputValue: b, todos: c};
+	});
+var _user$project$Main$UpdateField = function (a) {
+	return {ctor: 'UpdateField', _0: a};
+};
+var _user$project$Main$AddTodo = {ctor: 'AddTodo'};
+var _user$project$Main$DeleteTodo = function (a) {
+	return {ctor: 'DeleteTodo', _0: a};
+};
 var _user$project$Main$todoItemView = function (todo) {
 	return A2(
 		_elm_lang$html$Html$li,
@@ -8295,7 +8346,7 @@ var _user$project$Main$todoItemView = function (todo) {
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html_Events$onClick(
-										{operation: 'DELETE_TODO', data: todo.id}),
+										_user$project$Main$DeleteTodo(todo.id)),
 									_1: {ctor: '[]'}
 								}
 							},
@@ -8321,26 +8372,45 @@ var _user$project$Main$view = function (model) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$ul,
+				_elm_lang$html$Html$input,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('results'),
-					_1: {ctor: '[]'}
+					_0: _elm_lang$html$Html_Attributes$value(model.inputValue),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateField),
+						_1: {ctor: '[]'}
+					}
 				},
-				A2(_elm_lang$core$List$map, _user$project$Main$todoItemView, model.todos)),
-			_1: {ctor: '[]'}
+				{ctor: '[]'}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$button,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$AddTodo),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Add'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$ul,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('results'),
+							_1: {ctor: '[]'}
+						},
+						A2(_elm_lang$core$List$map, _user$project$Main$todoItemView, model.todos)),
+					_1: {ctor: '[]'}
+				}
+			}
 		});
-};
-var _user$project$Main$initialModel = {
-	todos: {
-		ctor: '::',
-		_0: {id: 1, title: 'React'},
-		_1: {
-			ctor: '::',
-			_0: {id: 2, title: 'Elm'},
-			_1: {ctor: '[]'}
-		}
-	}
 };
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
 	{view: _user$project$Main$view, update: _user$project$Main$update, model: _user$project$Main$initialModel})();
