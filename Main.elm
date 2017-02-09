@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
-
 initialModel = { 
         todos = [
             { id = 1, title = "React" }, 
@@ -29,9 +28,7 @@ view model =
 
 update msg model =
     if msg.operation == "DELETE_TODO" then
-        { model 
-            | todos = List.filter (\m -> m.id /= msg.data ) model.todos 
-        }
+        { model | todos = List.filter (\m -> m.id /= msg.data ) model.todos }
     else
         model
 
