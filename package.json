@@ -1,23 +1,24 @@
 {
-  "name": "elm-samples",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kogoia/elm-samples.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kogoia/elm-samples/issues"
-  },
-  "homepage": "https://github.com/kogoia/elm-samples#readme",
-  "dependencies": {
-    "elm": "^0.18.0"
-  }
+    "name": "elm-samples",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "elm-make Main.elm --output elm.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kogoia/elm-samples.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kogoia/elm-samples/issues"
+    },
+    "homepage": "https://github.com/kogoia/elm-samples#readme",
+    "dependencies": {
+        "elm": "^0.18.0"
+    }
 }

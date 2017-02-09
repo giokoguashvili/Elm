@@ -8310,17 +8310,6 @@ var _user$project$Main$todoItemView = function (todo) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$initialModel = {
-	todos: {
-		ctor: '::',
-		_0: {id: 1, title: 'React'},
-		_1: {
-			ctor: '::',
-			_0: {id: 2, title: 'Elm'},
-			_1: {ctor: '[]'}
-		}
-	}
-};
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -8338,24 +8327,23 @@ var _user$project$Main$view = function (model) {
 					_0: _elm_lang$html$Html_Attributes$class('results'),
 					_1: {ctor: '[]'}
 				},
-				A2(_elm_lang$core$List$map, _user$project$Main$todoItemView, _user$project$Main$initialModel.todos)),
+				A2(_elm_lang$core$List$map, _user$project$Main$todoItemView, model.todos)),
 			_1: {ctor: '[]'}
 		});
 };
+var _user$project$Main$initialModel = {
+	todos: {
+		ctor: '::',
+		_0: {id: 1, title: 'React'},
+		_1: {
+			ctor: '::',
+			_0: {id: 2, title: 'Elm'},
+			_1: {ctor: '[]'}
+		}
+	}
+};
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
 	{view: _user$project$Main$view, update: _user$project$Main$update, model: _user$project$Main$initialModel})();
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {query: a, results: b};
-	});
-var _user$project$Main$SearchResult = F3(
-	function (a, b, c) {
-		return {id: a, name: b, stars: c};
-	});
-var _user$project$Main$Msg = F2(
-	function (a, b) {
-		return {operation: a, data: b};
-	});
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
