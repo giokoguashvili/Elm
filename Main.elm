@@ -65,7 +65,16 @@ update msg model =
             { model | inputValue = str }
 
         AddTodo ->
-            { model | todos = model.todos ++ [ { id = model.uid, title = model.inputValue } ], uid = model.uid + 1, inputValue = "" }
+            { model
+                | todos =
+                    model.todos
+                        ++ [ { id = model.uid
+                             , title = model.inputValue
+                             }
+                           ]
+                , uid = model.uid + 1
+                , inputValue = ""
+            }
 
 
 main =
